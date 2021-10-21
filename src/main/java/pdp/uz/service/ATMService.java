@@ -139,12 +139,14 @@ public class ATMService {
     public ApiResponse fill(FillDto dto) {
         try {
             Optional<ATM> optionalATM = atmRepo.findById(dto.getAtmId());
-            if (!optionalATM.isPresent())
+            if (!optionalATM.isPresent()) {
                 return new ApiResponse("ATM not found", false);
+            }
             ATM atm = optionalATM.get();
             Employee employee = employeeRepo.findByEmail(Employee.getCurrentEmployee().getUsername()).get();
-            if (!employee.getAtms().contains(atm))
+            if (!employee.getAtms().contains(atm)) {
                 return new ApiResponse("You do not have access", false);
+            }
             List<Penny> pennies = Penny.toPenny(dto.getPennies());
 
             List<Penny> atmPennies = atm.getPennies();
