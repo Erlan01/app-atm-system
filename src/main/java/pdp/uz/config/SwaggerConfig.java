@@ -28,7 +28,7 @@ public class SwaggerConfig {
                 .securityContexts(Collections.singletonList(securityContext()))
                 .securitySchemes(Collections.singletonList(apiKey()))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("uz.pdp.appatmsystem.controller"))
+                .apis(RequestHandlerSelectors.basePackage("pdp.uz.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
